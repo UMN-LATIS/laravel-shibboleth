@@ -99,4 +99,9 @@ class ShibbolethUserProvider implements UserProviderInterface
     {
         // Not Implemented
     }
+
+    public function rehashPasswordIfRequired(Authenticatable $user, array $credentials, bool $force = false)
+    {
+        // Not Implemented
+    }
 }
