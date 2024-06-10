@@ -16,7 +16,7 @@ Because this is a fork, you'll need to add the fork to your composer.json file. 
 
 Use [composer][1] to require the latest release into your project:
 
-    composer require razorbacks/laravel-shibboleth
+    composer require "razorbacks/laravel-shibboleth":"dev-umn"
 
 
 Publish the default configuration file and entitlement migrations:
