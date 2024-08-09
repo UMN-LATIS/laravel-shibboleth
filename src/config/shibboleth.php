@@ -38,14 +38,14 @@ return array(
     ],
     'apache_shib' => [
         'idp_login'     => '/Shibboleth.sso/Login',
-        'idp_logout'    => '/Shibboleth.sso/Logout',
+        'idp_logout'    => env('SHIB_LOGOUT','/Shibboleth.sso/Logout'),
     ],
     // by default, we'll register the necessary routes. In multitennancy cases, you probably don't want to do this.
-    "register_routes" => true,
+    "register_routes" => env('SHIB_REGISTER_ROUTES', true),
     // where should the user be redirected after a successful login
     'authenticated' => '/home',
     // authfield defines the field we should use as the primary key to look up users in our database.
-    'authfield'     => 'umndid',
+    'authfield'     => env('SHIB_AUTH_FIELD', 'umndid'),
     /*
     |--------------------------------------------------------------------------
     | Emulate an IdP
@@ -104,12 +104,12 @@ return array(
     // Note: when using local-sp, these need to be the full unmapped attributes from Shib    
     'user' => [
         // fillable user model attribute => server variable
-        'email'       => 'eppn',
-        'name'        => 'displayName',
-        'first_name'  => 'givenName',
-        'last_name'   => 'sn',
-        'umndid'  => 'umnDID',
-        'emplid'  => 'umnEmplId',
+        'email'       => env('SHIB_EMAIL_FIELD', 'eppn'),
+        'name'        => env('SHIB_NAME_FIELD', 'displayName'),
+        'first_name'  => env('SHIB_FIRST_NAME', 'givenName'),
+        'last_name'   => env('SHIB_LAST_NAME', 'sn'),
+        'umndid'  => env("SHIB_DID", 'umnDID'),
+        'emplid'  => env('SHIB_EMPL_ID', 'umnEmplId'),
     ],
 
     /*
