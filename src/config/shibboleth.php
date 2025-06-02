@@ -69,8 +69,8 @@ return array(
             'givenName'   => 'Admin',
             'sn'          => 'User',
             'mail'        => 'admin@uwm.edu',
-            'umndid'        => 'fkEWzvkzzksed',
-            'emplid'        => '1111111',
+            'umnDID'        => 'fkEWzvkzzksed',
+            'umnEmplId'        => '1111111',
         ),
         'staff' => array(
             'uid'         => 'staff',
@@ -78,8 +78,8 @@ return array(
             'givenName'   => 'Staff',
             'sn'          => 'User',
             'mail'        => 'staff@uwm.edu',
-            'umndid'        => 'dktEfcdzzksed',
-            'emplid'        => '2222222',
+            'umnDID'        => 'dktEfcdzzksed',
+            'umnEmplId'        => '2222222',
         ),
         'user'  => array(
             'uid'         => 'user',
@@ -87,8 +87,8 @@ return array(
             'givenName'   => 'User',
             'sn'          => 'User',
             'mail'        => 'user@uwm.edu',
-            'umndid'        => 'vDSAeszf',
-            'emplid'        => '3333333',
+            'umnDID'        => 'vDSAeszf',
+            'umnEmplId'        => '3333333',
         ),
     ),
 
