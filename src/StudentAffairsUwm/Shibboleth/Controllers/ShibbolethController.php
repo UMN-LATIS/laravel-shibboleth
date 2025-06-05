@@ -274,8 +274,18 @@ class ShibbolethController extends Controller
     }
 
     public function localSPLogin() {
+        $localSettings = config('shibboleth.local_settings');
+        // check if the assertionConsumerService is a fqdn and if not, set it based on the current request host
+        if (isset($localSettings['sp']['assertionConsumerService']['url'])) {
+            $acsUrl = $localSettings['sp']['assertionConsumerService']['url'];
+            if (!preg_match('/^https?:\/\//', $acsUrl)) {
+                $localSettings['sp']['assertionConsumerService']['url'] = url($acsUrl);
+            }
+	    } else {
+            return abort(500, 'Assertion Consumer Service URL is not configured.');
+        }
 
-        $auth = new OneLogin_Saml2_Auth(config('shibboleth.local_settings'));
+        $auth = new OneLogin_Saml2_Auth($localSettings);
         $auth->login(null,array(),false,false,false,false);
     }
 
@@ -285,7 +295,17 @@ class ShibbolethController extends Controller
     }
 
     public function localSPACS() {
-        $auth = new OneLogin_Saml2_Auth(config('shibboleth.local_settings'));
+        $localSettings = config('shibboleth.local_settings');
+        // check if the assertionConsumerService is a fqdn and if not, set it based on the current request host
+        if (isset($localSettings['sp']['assertionConsumerService']['url'])) {
+            $acsUrl = $localSettings['sp']['assertionConsumerService']['url'];
+            if (!preg_match('/^https?:\/\//', $acsUrl)) {
+                $localSettings['sp']['assertionConsumerService']['url'] = url($acsUrl);
+            }
+	    } else {
+            return abort(500, 'Assertion Consumer Service URL is not configured.');
+        }
+        $auth = new OneLogin_Saml2_Auth($localSettings);
         Utils::setProxyVars(true);
         $auth->processResponse();
 
