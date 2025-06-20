@@ -271,8 +271,8 @@ class ShibbolethController extends Controller
             $acsUrl = $localSettings['sp']['assertionConsumerService']['url'];
             if (!preg_match('/^https?:\/\//', $acsUrl)) {
                 $localSettings['sp']['assertionConsumerService']['url'] = url($acsUrl);
-                return $localSettings;
             }
+            return $localSettings;
 	    } else {
             return abort(500, 'Assertion Consumer Service URL is not configured.');
         }
