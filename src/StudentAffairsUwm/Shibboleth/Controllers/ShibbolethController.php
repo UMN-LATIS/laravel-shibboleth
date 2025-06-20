@@ -316,7 +316,8 @@ class ShibbolethController extends Controller
         }
 
         // foreach($auth->getAttributes() as $key=>$value) {
-            Request::session()->flash("shibAttributes",serialize($auth->getAttributes()));
+        Request::session()->flash("shibAttributes",serialize(array_merge(["nameId"=>$auth->getNameId()], $auth->getAttributes())));
+        
         // }
         // Request::session()->flash($auth->getAttributes());
         return Redirect::action('\\' . __CLASS__ . '@idpAuthenticate');
