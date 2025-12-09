@@ -22,7 +22,7 @@
     "require": {
         "illuminate/support": ">=6",
         "mrclay/shibalike": "1.0.0",
-        "onelogin/php-saml": "~3.5.1",
+        "onelogin/php-saml": "~4.0",
         "laravel/framework": ">=5"
     },
     "autoload": {
