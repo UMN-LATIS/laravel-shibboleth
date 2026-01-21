@@ -42,7 +42,7 @@ class ShibbolethController extends Controller
     /**
      * Constructor
      */
-    public function __construct(GenericUser $user = null)
+    public function __construct(?GenericUser $user = null)
     {
         if (config('shibboleth.emulate_idp') === true) {
             $this->config         = new \Shibalike\Config();
