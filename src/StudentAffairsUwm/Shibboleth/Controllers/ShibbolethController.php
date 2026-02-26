@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 use StudentAffairsUwm\Shibboleth\ConfigurationBackwardsCompatabilityMapper;
 
 use OneLogin\Saml2\Auth as OneLogin_Saml2_Auth;
 use OneLogin\Saml2\Error as OneLogin_Saml2_Error;
 use OneLogin\Saml2\Utils;
+
+
 
 class ShibbolethController extends Controller
 {
@@ -316,7 +319,12 @@ class ShibbolethController extends Controller
         }
 
         // foreach($auth->getAttributes() as $key=>$value) {
-        Request::session()->flash("shibAttributes",serialize(array_merge(["nameId"=>$auth->getNameId()], $auth->getAttributes())));
+        $attributesForSerialization = array_merge(["nameId"=>$auth->getNameId()], $auth->getAttributes());
+        
+        if(config('shibboleth.debug_attributes')) {
+            Log::debug("SAML Attributes: " . print_r($attributesForSerialization, true));
+        }
+        Request::session()->flash("shibAttributes",serialize($attributesForSerialization));
         
         // }
         // Request::session()->flash($auth->getAttributes());

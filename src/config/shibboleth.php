@@ -31,7 +31,8 @@ return array(
      */
 
      // default to using apache mod_shib
-    'sp_type' => env('SHIB_SP_TYPE', 'apache_shib'),
+    'debug_attributes' => env('SHIB_DEBUG_ATTRIBUTES', false),
+     'sp_type' => env('SHIB_SP_TYPE', 'apache_shib'),
     'local_shib' => [
         'idp_login'     => '/local-sp/Login',
         'idp_logout'    => '/local-sp/Logout',
